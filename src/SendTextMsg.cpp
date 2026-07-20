@@ -28,11 +28,9 @@ void Route_SendTextMsg(httplib::Server& svr)
             std::string wxidorgid = reqJson.value("wxidorgid", "");
             std::string msg = reqJson.value("msg", "");
 
-            WeixinSend::SendText(wxidorgid, msg);
-
-
-            resp["ret"] = 0;
-            resp["retmsg"] = "success";
+            const bool queued = WeixinSend::SendText(wxidorgid, msg);
+            resp["ret"] = queued ? 0 : -1;
+            resp["retmsg"] = queued ? "queued" : "queue failed";
 
             res.set_content(resp.dump(), "application/json");
         });

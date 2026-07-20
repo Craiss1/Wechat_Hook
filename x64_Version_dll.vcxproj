@@ -73,12 +73,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>.\xdb;.\minhook\src\hde;.\minhook\src;.\minhook\include;.\include;.\3rdparty;$(IncludePath)</IncludePath>
+    <IncludePath>.\xdb;.\minhook\src\hde;.\minhook\src;.\minhook\include;.\include;.\3rdparty;.\3rdparty\imgui;.\3rdparty\imgui\backends;$(IncludePath)</IncludePath>
     <TargetName>version</TargetName>
     <EnableClServerMode>false</EnableClServerMode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>.\xdb;.\minhook\src\hde;.\minhook\src;.\minhook\include;.\include;.\3rdparty;$(IncludePath)</IncludePath>
+    <IncludePath>.\xdb;.\minhook\src\hde;.\minhook\src;.\minhook\include;.\include;.\3rdparty;.\3rdparty\imgui;.\3rdparty\imgui\backends;$(IncludePath)</IncludePath>
     <TargetName>version</TargetName>
     <EnableClServerMode>false</EnableClServerMode>
   </PropertyGroup>
@@ -138,7 +138,7 @@
       <ModuleDefinitionFile>version.def</ModuleDefinitionFile>
       <LinkIncremental>true</LinkIncremental>
       <AdditionalLibraryDirectories>.\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>psapi.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;gdiplus.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -164,7 +164,7 @@
       <EnableUAC>false</EnableUAC>
       <ModuleDefinitionFile>version.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>.\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>psapi.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;gdiplus.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <OptimizeReferences>true</OptimizeReferences>
@@ -182,6 +182,7 @@
     <ClInclude Include="include\hook_xlog.h" />
     <ClInclude Include="include\httplib.h" />
     <ClInclude Include="include\httplib_core.h" />
+    <ClInclude Include="include\imgui_ui.h" />
     <ClInclude Include="include\http_post.h" />
     <ClInclude Include="include\http_routes.h" />
     <ClInclude Include="include\http_server.h" />
@@ -195,6 +196,7 @@
     <ClInclude Include="include\tools.h" />
     <ClInclude Include="include\wx_ini_reader.h" />
     <ClInclude Include="include\wx_send.h" />
+    <ClInclude Include="include\wx_send_qt.h" />
     <ClInclude Include="include\wx_send_xml.h" />
     <ClInclude Include="xdb\db_mgr.h" />
     <ClInclude Include="xdb\sqlite3.h" />
@@ -203,6 +205,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="3rdparty\imgui\imgui.cpp" />
+    <ClCompile Include="3rdparty\imgui\imgui_draw.cpp" />
+    <ClCompile Include="3rdparty\imgui\imgui_tables.cpp" />
+    <ClCompile Include="3rdparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="3rdparty\imgui\backends\imgui_impl_dx11.cpp" />
+    <ClCompile Include="3rdparty\imgui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="minhook\src\buffer.c" />
     <ClCompile Include="minhook\src\hde\hde64.c" />
     <ClCompile Include="minhook\src\hook.c" />
@@ -219,6 +227,7 @@
     <ClCompile Include="src\http_routes.cpp" />
     <ClCompile Include="src\http_server.cpp" />
     <ClCompile Include="src\inline_weixin_dll_load.cpp" />
+    <ClCompile Include="src\imgui_ui.cpp" />
     <ClCompile Include="src\lz4.c" />
     <ClCompile Include="src\requests.cpp" />
     <ClCompile Include="src\version_proxy.cpp" />
@@ -228,6 +237,7 @@
     <ClCompile Include="src\tools.cpp" />
     <ClCompile Include="src\wx_ini_reader.cpp" />
     <ClCompile Include="src\wx_send.cpp" />
+    <ClCompile Include="src\wx_send_qt.cpp" />
     <ClCompile Include="src\wx_send_xml.cpp" />
     <ClCompile Include="xdb\db_mgr.cpp" />
     <ClCompile Include="xdb\SundaySearch.cpp" />
@@ -237,6 +247,7 @@
     <MASM Include="src\cpuid.asm">
       <FileType>Document</FileType>
     </MASM>
+    <MASM Include="src\wx_send_qt_bridge.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

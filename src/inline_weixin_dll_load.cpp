@@ -17,6 +17,8 @@
 #include "wx_ini_reader.h"
 #include "inline_weixin_dll_load.h"
 #include "hook_xlog.h"
+#include "imgui_ui.h"
+#include "wx_send_qt.h"
 
 
 
@@ -191,7 +193,9 @@ void Evt_WeixinLoad()
     //get base DirPath
     //InitStandardPaths();
     
-    Patch_Revoke();
+    // Patch_Revoke();
+
+    WeixinSend::InitializeQtTextSender();
 
 
     // 创建并启动HTTP服务器
@@ -200,6 +204,8 @@ void Evt_WeixinLoad()
         g_httpServer = new HttpServer();
         g_httpServer->Start("0.0.0.0", g_StartPort);
     }
+
+    StartImGuiUi();
 #ifdef _DEBUG
     //xLog 日志
     Hook_Call(WeixinDll_Offset(0x108678), 5, hook::MyCallHandler_xLog);

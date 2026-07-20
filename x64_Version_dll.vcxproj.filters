@@ -43,6 +43,9 @@
     <Filter Include="源文件\MinHook\hde">
       <UniqueIdentifier>{46d381c0-b802-4e78-93dc-3ec05a959e14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\ImGui">
+      <UniqueIdentifier>{64567E3D-A378-4E8E-A660-AD62FA1D6923}</UniqueIdentifier>
+    </Filter>
     <Filter Include="源文件\http_send">
       <UniqueIdentifier>{c6178c75-44b4-4075-a3ca-82504bfcd502}</UniqueIdentifier>
     </Filter>
@@ -153,6 +156,12 @@
     <ClInclude Include="include\lz4.h">
       <Filter>头文件\Func</Filter>
     </ClInclude>
+    <ClInclude Include="include\imgui_ui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\wx_send_qt.h">
+      <Filter>头文件\Func</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -242,11 +251,40 @@
     <ClCompile Include="src\lz4.c">
       <Filter>源文件\Func</Filter>
     </ClCompile>
+    <ClCompile Include="src\imgui_ui.cpp">
+      <Filter>源文件\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wx_send_qt.cpp">
+      <Filter>源文件\Func</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\imgui\imgui.cpp">
+      <Filter>源文件\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\imgui\imgui_draw.cpp">
+      <Filter>源文件\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\imgui\imgui_tables.cpp">
+      <Filter>源文件\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\imgui\imgui_widgets.cpp">
+      <Filter>源文件\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>源文件\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>源文件\ImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.def">
       <Filter>源文件</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="src\wx_send_qt_bridge.asm">
+      <Filter>源文件</Filter>
+    </MASM>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="src\cpuid.asm">

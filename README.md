@@ -85,6 +85,14 @@ Debug 输出：
 x64\Debug\version.dll
 ```
 
+## ImGui 控制面板
+
+项目内置 Dear ImGui v1.92.5，并使用 Win32 + DirectX 11 后端创建独立控制面板。DLL 在微信主进程完成初始化后自动显示窗口；按 `Insert` 可随时显示或隐藏。
+
+面板采用上位机控制台布局，提供运行状态、发送文本、发送图片、转发 XML、图片解码、账号资料和数据库查询页面。填写参数并点击按钮即可调用项目内现有接口，调用在后台执行，响应统一显示在结果区域。关闭窗口只会隐藏面板，不会停止 Hook 或 HTTP 服务。
+
+文本发送页使用微信自身 Qt queued callback 执行内部 orchestrator。controller resolver 使用三次 Pointer Map 重扫后仍存活的 5 条最短静态 `Weixin.dll` 候选链，并按 CE MemoryRecord 的 final-first offset 顺序逐条求值。调试区实时显示命中的候选编号、逐级地址以及 `active/status/callback/inject/recipient/destroy/oldRelease/task`；`status=3` 表示已进入原始提交调用。
+
 ## 加载与启动参数
 
 项目生成的 DLL 文件名为 `version.dll`。加载后会代理系统 `version.dll` 的导出函数，并在微信主进程内初始化 Hook 与 HTTP 服务。
